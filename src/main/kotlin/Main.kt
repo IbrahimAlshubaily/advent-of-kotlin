@@ -1,29 +1,104 @@
 import java.io.File
+import java.util.*
 
 fun main() {
-    dayThree()
+    dayFive()
 }
 
-fun dayThree() {
+fun parseRow(str: String) =
+    str.replace("[", "")
+        .replace("]", "")
+        .replace("  ", " ")
+        .chunked(2).map {
+            it.trim()
+        }
 
-    val lowerBase = 'a'.code - 1
-    val upperBase = 'A'.code - 27
-    var out = 0
-    File("InputData/3.txt").forEachLine {
+fun dayFive() {
 
-        val compartmentLength = it.length / 2
-        val compartmentOne = it.substring(0, compartmentLength).toSet()
-        val compartmentTwo = it.substring(compartmentLength, it.length).toSet()
+    val data = File("InputData/5.txt").readLines()
+    val idx = data.indexOf("")
 
-        val sharedItem = compartmentOne.intersect(compartmentTwo).take(1)[0]
-        if (sharedItem.isLowerCase()) {
-            out += sharedItem.code - lowerBase
-        } else {
-            out += sharedItem.code - upperBase
+    val nStacks = parseRow(data[idx - 2]).size
+    val stacks = Array(nStacks) { Stack<Char>() }
+
+    for (i in idx - 2 downTo 0) {
+        val row = parseRow(data[i])
+        row.withIndex().forEach {
+            if (it.value.isNotEmpty()) {
+                stacks[it.index].push(it.value.toCharArray()[0])
+            }
         }
     }
-    println(out)//8153
+
+    for (i in idx + 1 until data.size) {
+        val instruction = data[i].split(" ")
+        val nPops = instruction[1].toInt()
+        val source = instruction[3].toInt() - 1
+        val destination = instruction[5].toInt() - 1
+        for (x in 0 until nPops) {
+            if (stacks[source].isEmpty()) {
+                break
+            }
+            stacks[destination].push(stacks[source].pop())
+        }
+    }
+    println("result")//WHRTDZPSM
+    stacks.forEach {
+        if (it.isNotEmpty())
+            print(it.pop())
+    }
 }
+
+
+//fun dayFour() {
+//    fun parse(str: String) = str.split('-').map { it.toIntOrNull() ?: -1 }
+//
+//    //fun contains(a: List<Int>, b: List<Int>) = (a[0] >= b[0] && a[1] <= b[1])
+//    fun overlap(a: List<Int>, b: List<Int>) = (a[0] >= b[0] && a[0] <= b[1])
+//    var count = 0
+//    File("InputData/4.txt").forEachLine {
+//        val pairStr = it.split(',').map { it -> parse(it) }
+//        if (overlap(pairStr[0], pairStr[1]) || overlap(pairStr[1], pairStr[0])) {
+//            count++
+//        }
+//    }
+//    println(count.toString() + " / " + File("InputData/4.txt").readLines().size)
+//}
+//fun dayThreePartTwo() {
+//    val lowerBase = 'a'.code - 1
+//    val upperBase = 'A'.code - 27
+//    var out = 0
+//    File("InputData/3.txt").readLines().chunked(3).forEach {
+//        val sharedItem = it[0].toSet().intersect(it[1].toSet()).intersect(it[2].toSet()).take(1)[0]
+//        if (sharedItem.isLowerCase()) {
+//            out += sharedItem.code - lowerBase
+//        } else {
+//            out += sharedItem.code - upperBase
+//        }
+//    }
+//    println(out)
+//}
+
+//fun dayThree() {
+//
+//    val lowerBase = 'a'.code - 1
+//    val upperBase = 'A'.code - 27
+//    var out = 0
+//    File("InputData/3.txt").forEachLine {
+//
+//        val compartmentLength = it.length / 2
+//        val compartmentOne = it.substring(0, compartmentLength).toSet()
+//        val compartmentTwo = it.substring(compartmentLength, it.length).toSet()
+//
+//        val sharedItem = compartmentOne.intersect(compartmentTwo).take(1)[0]
+//        if (sharedItem.isLowerCase()) {
+//            out += sharedItem.code - lowerBase
+//        } else {
+//            out += sharedItem.code - upperBase
+//        }
+//    }
+//    println(out)//8153
+//}
 //fun dayTwo() {
 //    val opponentChoiceMap = HashMap<String, String>()
 //    opponentChoiceMap["A"] = "rock"
