@@ -5,6 +5,7 @@ fun main() {
     dayFive()
 }
 
+//[P] [F] [R] [P] [Z] [F] [W]     [F] -> [P, F, R, P, Z, F, W, <emptyString>, F]
 fun parseRow(str: String) =
     str.replace("[", "")
         .replace("]", "")
@@ -25,7 +26,7 @@ fun dayFive() {
         val row = parseRow(data[i])
         row.withIndex().forEach {
             if (it.value.isNotEmpty()) {
-                stacks[it.index].push(it.value.toCharArray()[0])
+                stacks[it.index].push(it.value.single())
             }
         }
     }
@@ -35,19 +36,20 @@ fun dayFive() {
         val nPops = instruction[1].toInt()
         val source = instruction[3].toInt() - 1
         val destination = instruction[5].toInt() - 1
+        val chars = Array(nPops) { ' ' }
         for (x in 0 until nPops) {
-            if (stacks[source].isEmpty()) {
-                break
-            }
-            stacks[destination].push(stacks[source].pop())
+            chars[x] = stacks[source].pop()
         }
+        for (ch in chars.reversed()) {
+            stacks[destination].push(ch)
+        }
+
     }
-    println("result")//WHRTDZPSM
     stacks.forEach {
         if (it.isNotEmpty())
             print(it.pop())
     }
-}
+}//ZFSJBPRFP
 
 
 //fun dayFour() {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5c487acf-d6cd-4c4c-b5d2-93ccc2616253" name="Changes" comment="dayThreeSolution first try">
+    <list default="true" id="5c487acf-d6cd-4c4c-b5d2-93ccc2616253" name="Changes" comment="dayFive B">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
     </list>
@@ -49,7 +49,8 @@
       <workItem from="1670532581334" duration="2000" />
       <workItem from="1670576706649" duration="3938000" />
       <workItem from="1670604431245" duration="68000" />
-      <workItem from="1670669062155" duration="4510000" />
+      <workItem from="1670669062155" duration="4716000" />
+      <workItem from="1670674456704" duration="1196000" />
     </task>
     <task id="LOCAL-00001" summary="dayOneSolution">
       <created>1670508467478</created>
@@ -79,7 +80,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670578119354</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="dayFive A">
+      <created>1670673731345</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1670673731345</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -101,7 +109,9 @@
     <MESSAGE value="dayOneSolution idiomatic" />
     <MESSAGE value="dayTwoSolution first try" />
     <MESSAGE value="dayThreeSolution first try" />
-    <option name="LAST_COMMIT_MESSAGE" value="dayThreeSolution first try" />
+    <MESSAGE value="dayFive A" />
+    <MESSAGE value="dayFive B" />
+    <option name="LAST_COMMIT_MESSAGE" value="dayFive B" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
